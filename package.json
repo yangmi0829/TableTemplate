@@ -3,7 +3,7 @@
   "description": "基于element-ui封装的table主键",
   "author": "yangmi",
   "license": "MIT",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": false,
   "main": "./dist/flock.common.js",
   "scripts": {
