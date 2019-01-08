@@ -1,13 +1,15 @@
 {
   "name": "element-ui-table-template",
   "description": "基于element-ui封装的table主键",
-  "author": "ym",
+  "author": "yangmu",
   "license": "MIT",
   "version": "0.1.0",
   "private": false,
+  "main": "./dist/flock.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build-bundle": "vue-cli-service build --target lib --name table_template ./src/index.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -16,6 +18,14 @@
     "vue-class-component": "^6.0.0",
     "vue-property-decorator": "^7.0.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yangmi0829/TableTemplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yangmi0829/TableTemplate/issues"
+  },
+  "homepage": "https://github.com/yangmi0829/TableTemplate#readme",
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.2.0",
     "@vue/cli-plugin-eslint": "^3.2.0",
