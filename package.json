@@ -1,7 +1,7 @@
 {
   "name": "element-ui-table-template",
   "description": "基于element-ui封装的table主键",
-  "author": "yangmu",
+  "author": "yangmi",
   "license": "MIT",
   "version": "0.1.0",
   "private": false,
