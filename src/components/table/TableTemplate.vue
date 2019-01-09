@@ -8,8 +8,8 @@
     border
     stripe
     style="width: 100%">
-    <template v-for="(i,$index) in header">
-      <table-column :i="i" :key="`${$index}`">
+    <template v-for="(i,$index) in headers">
+      <table-column :col="i" :key="`${$index}`">
         <template v-if="i.slot" :slot="i.slot" slot-scope="{scope}">
           <slot :name="i.slot" :scope="scope">{{i.slot}}</slot>
         </template>
@@ -18,25 +18,26 @@
   </el-table>
 </template>
 
-<script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator'
+<script>
 import TableColumn from './TableColumn.vue'
-
-@Component({
-  components: { TableColumn }
-})
-export default class TableTemplate extends Vue {
-  @Prop() spanMethod:Function;
-  @Prop() header!:Array<any>;
-  @Prop() tableData!:Array<any>;
-  handleSelectionChange (val:any) {
-    this.$emit('selectionChange', val)
-  }
-  handleRowClick (row:any, event:any, column:any) {
-    this.$emit('handleRowClick', row, event, column)
-  }
-  handleCellClick (row:any, column:any, cell:any, event:any) {
-    this.$emit('handleCellClick', row, column, cell, event)
+export default {
+  name: 'table-Template',
+  props: {
+    spanMethod: { type: Function },
+    headers: { type: Array, required: true },
+    tableData: { type: Array, required: true }
+  },
+  components: { TableColumn },
+  methods: {
+    handleSelectionChange (val) {
+      this.$emit('selectionChange', val)
+    },
+    handleRowClick (row, event, column) {
+      this.$emit('handleRowClick', row, event, column)
+    },
+    handleCellClick (row, column, cell, event) {
+      this.$emit('handleCellClick', row, column, cell, event)
+    }
   }
 }
 </script>

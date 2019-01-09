@@ -4,19 +4,17 @@
       <div class="top">
         <div  class="left">
           <slot name="top-left">
-            <el-button size="mini">左边按钮</el-button>
           </slot>
         </div>
         <div class="right">
           <slot class="right" name="top-right">
-            <el-button size="mini" @click="search">右边按钮</el-button>
           </slot>
         </div>
       </div>
       <!--table-->
       <div class="table">
-        <table-template @handleRowClick="handleRowClick" @handleCellClick="handleCellClick" :spanMethod="spanMethod" :header="header" ref="table" :tableData="tableData" @selectionChange="handleSelectionChange">
-          <template  v-for="i in header"  :slot="i.slot" slot-scope="{scope}">
+        <table-template @handleRowClick="handleRowClick" @handleCellClick="handleCellClick" :spanMethod="spanMethod" :headers="headers" ref="table" :tableData="tableData" @selectionChange="handleSelectionChange">
+          <template  v-for="i in headers"  :slot="i.slot" slot-scope="{scope}">
               <slot v-if="i.slot" :name="i.slot" :scope="scope">{{i.slot}}</slot>
             </template>
         </table-template>
@@ -31,37 +29,35 @@
     </div>
 </template>
 
-<script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator'
-import PageMixins, { Page } from '../../mixin/mixin'
+<script>
 import TableTemplate from './TableTemplate.vue'
-
-@Component({
+export default {
+  name: 'table-layout',
+  props: {
+    spanMethod: { type: Function },
+    headers: { type: Array, required: true },
+    tableData: { type: Array, required: true },
+    pageObj: { type: Object, required: true }
+  },
   components: { TableTemplate },
-  mixins: [PageMixins]
-})
-export default class TableLayout extends Vue {
-  method:string = 'emitEvent';
-  @Prop() spanMethod:any;
-  @Prop() header!:Array<object>;
-  @Prop() tableData!:Array<any>;
-  @Prop()pageObj!:Page;
-  emitEvent () {
-    let method = ''
-    if (this.$parent) {
-      // @ts-ignore
-      method = this.$parent.method
+  methods: {
+    // 分页长度改变
+    handleSizeChange (val) {
+      this.$emit('sizeChange', val)
+    },
+    // 分页页码改变
+    handleCurrentChange (val) {
+      this.$emit('currentChange', val)
+    },
+    handleSelectionChange (val) {
+      this.$emit('selectionChange', val)
+    },
+    handleRowClick (row, event, column) {
+      this.$emit('handleRowClick', row, event, column)
+    },
+    handleCellClick (row, column, cell, event) {
+      this.$emit('handleCellClick', row, column, cell, event)
     }
-    this.$emit(method || this.method, this.pageObj)
-  }
-  handleSelectionChange (val:any) {
-    this.$emit('selectionChange', val)
-  }
-  handleRowClick (row:any, event:any, column:any) {
-    this.$emit('handleRowClick', row, event, column)
-  }
-  handleCellClick (row:any, column:any, cell:any, event:any) {
-    this.$emit('handleCellClick', row, column, cell, event)
   }
 }
 </script>
