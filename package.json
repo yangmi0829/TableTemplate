@@ -7,17 +7,11 @@
   "private": false,
   "main": "./src/index.js",
   "keywords": [
-    "vux",
     "vue",
-    "vue ui",
-    "weui",
     "vue-components",
-    "web-components",
     "component",
     "components",
-    "mobile ui",
-    "framework",
-    "frontend"
+    "table"
   ],
   "scripts": {
     "serve": "vue-cli-service serve",
