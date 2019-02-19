@@ -13,7 +13,7 @@
       </div>
       <!--table-->
       <div class="table">
-        <table-template @handleRowClick="handleRowClick" @handleCellClick="handleCellClick" :spanMethod="spanMethod" :headers="headers" ref="table" :tableData="tableData" @selectionChange="handleSelectionChange">
+        <table-template  v-bind="$attrs"  @handleRowClick="handleRowClick" @handleCellClick="handleCellClick" :spanMethod="spanMethod" :headers="headers" ref="table" :tableData="tableData" @selectionChange="handleSelectionChange">
           <template  v-for="i in headers"  :slot="i.slot" slot-scope="{scope}">
               <slot v-if="i.slot" :name="i.slot" :scope="scope">{{i.slot}}</slot>
             </template>
