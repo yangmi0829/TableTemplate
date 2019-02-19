@@ -1,7 +1,7 @@
 <!--suppress ALL -->
 <template>
   <!--table模板-->
-  <table-layout @sizeChange="handleSizeChange" @currentChange="handleCurrentChange" @handleRowClick="handleRowClick" @handleCellClick="handleCellClick" :spanMethod="spanMethod"  :pageObj="pageObj" :headers="headers" @selectionChange="handleSelectionChange" :tableData="tableData">
+  <table-layout :show-summary="true" height="500" :summary-method="summaryMethod" @sizeChange="handleSizeChange" @currentChange="handleCurrentChange" @handleRowClick="handleRowClick" @handleCellClick="handleCellClick" :spanMethod="spanMethod"  :pageObj="pageObj" :headers="headers" @selectionChange="handleSelectionChange" :tableData="tableData">
     <template slot="top-left">
       左边插槽
     </template>
@@ -46,7 +46,7 @@ export default {
         { type: 'selection' },
         { type: 'expand', slot: 'expand' },
         { type: 'index', fixed: true },
-        { prop: 'id', label: 'id' },
+        { prop: 'id', label: 'id',sortable: true },
         { prop: 'name', label: '姓名', slot: 'name-phone' },
         { prop: 'loginName', label: '登录名' },
         { prop: 'nickName', label: '昵称' },
@@ -78,6 +78,32 @@ export default {
     this.queryParams.keyword = 'keyword'
   },
   methods: {
+    summaryMethod(param){
+      const { columns, data } = param;
+      const sums = [];
+      columns.forEach((column, index) => {
+        if (index === 0) {
+          sums[index] = '总价';
+          return;
+        }
+        const values = data.map(item => Number(item[column.property]));
+        if (!values.every(value => isNaN(value))) {
+          sums[index] = values.reduce((prev, curr) => {
+            const value = Number(curr);
+            if (!isNaN(value)) {
+              return prev + curr;
+            } else {
+              return prev;
+            }
+          }, 0);
+          sums[index] += ' 元';
+        } else {
+          sums[index] = '';
+        }
+      });
+
+      return sums;
+    },
     init () {
       console.log('init方法做一些其它事情')
       this.getTableData()
@@ -114,8 +140,8 @@ export default {
       let limit = this.pageObj.limit
       this.pageObj.total = 100
       this.tableData = []
-      for(let i = 0 ; i < limit ; i++){
-        this.tableData.push( { id: page*limit + i  } )
+      for (let i = 0; i < limit; i++) {
+        this.tableData.push({ id: page * limit + i, name: '测试' + page * limit + i })
       }
     },
     handleSelectionChange (val) {
