@@ -1,10 +1,11 @@
 {
   "name": "element-ui-table-template",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "基于element-ui封装的table主键",
   "author": "yangmi",
   "license": "MIT",
   "private": false,
+  "main": "./src/index.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
