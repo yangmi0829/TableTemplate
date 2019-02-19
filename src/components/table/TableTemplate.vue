@@ -21,7 +21,7 @@
 <script>
 import TableColumn from './TableColumn.vue'
 export default {
-  name: 'table-Template',
+  name: 'table-template',
   props: {
     spanMethod: { type: Function },
     headers: { type: Array, required: true },
