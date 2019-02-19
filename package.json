@@ -6,6 +6,19 @@
   "license": "MIT",
   "private": false,
   "main": "./src/index.js",
+  "keywords": [
+    "vux",
+    "vue",
+    "vue ui",
+    "weui",
+    "vue-components",
+    "web-components",
+    "component",
+    "components",
+    "mobile ui",
+    "framework",
+    "frontend"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
