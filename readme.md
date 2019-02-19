@@ -5,7 +5,7 @@
 npm install element-ui-table-template
 ```
 ### use
-![use](./public/image/1.png)
+![use](./public/1.png)
 ```
 /*main.js中引入*/
 import TableComponent from 'element-ui-table-template'
