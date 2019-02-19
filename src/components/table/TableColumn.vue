@@ -10,7 +10,7 @@
         <slot :name="col.slot" :scope="scope"></slot>
       </template>
     </el-table-column>
-    <el-table-column v-else :prop="col.prop" :show-overflow-tooltip="col.tips" :align="col.center || 'center'" :label="col.label"  :width="col.width" :min-width="col.minWidth"  :fixed="col.fixed">
+    <el-table-column v-else :prop="col.prop" :sortable="col.sortable" :show-overflow-tooltip="col.tips" :align="col.center || 'center'" :label="col.label"  :width="col.width" :min-width="col.minWidth"  :fixed="col.fixed">
       <template v-if="!col.children" slot-scope="scope">
         <!--默认显示文本-->
         <template  v-if="!col.slot">{{scope.row[col.prop]}}</template>
