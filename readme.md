@@ -195,5 +195,7 @@ export default {
 ```
 
 ###文档
-待补充
+参考element-ui 表格主键
+Table Attributes大致相同，
+Table-column Attributes需转化为header对象
 
