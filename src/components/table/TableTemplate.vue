@@ -5,6 +5,7 @@
     @cell-click="handleCellClick"
     @selection-change="handleSelectionChange"
     :data="tableData"
+    v-bind="$attrs"
     border
     stripe
     style="width: 100%">
