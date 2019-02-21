@@ -11,6 +11,7 @@
     "vue-components",
     "component",
     "components",
+    "element-ui",
     "table"
   ],
   "scripts": {
