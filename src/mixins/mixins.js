@@ -1,4 +1,4 @@
-export const TABLE_MIXINS = {
+export const Mixins = {
   data () {
     return {
       pageObj: { page: 1, limit: 10, total: 0 },
