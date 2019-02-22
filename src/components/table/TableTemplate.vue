@@ -4,7 +4,7 @@
     @row-click="handleRowClick"
     @cell-click="handleCellClick"
     @selection-change="handleSelectionChange"
-    :data="tableData"
+    :data="data"
     v-bind="$attrs"
     border
     stripe
@@ -26,7 +26,7 @@ export default {
   props: {
     spanMethod: { type: Function },
     headers: { type: Array, required: true },
-    tableData: { type: Array, required: true }
+    data: { type: Array, required: true }
   },
   components: { TableColumn },
   methods: {
