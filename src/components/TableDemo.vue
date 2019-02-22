@@ -7,16 +7,17 @@
                 :pageObj="pageObj"
                 :headers="headers"
                 :data="tableData"
-                @sizeChange="handleSizeChange"
-                @currentChange="handleCurrentChange"
-                @handleRowClick="handleRowClick"
-                @handleCellClick="handleCellClick"
-                @selectionChange="handleSelectionChange">
+                @sizeChange="sizeChange"
+                @currentChange="currentChange"
+                @rowClick="rowClick"
+                @cellClick="cellClick"
+                @selectionChange="selectionChange">
     <template slot="top-left">
       左边插槽
     </template>
     <template slot="top-right">
-      右边插槽
+      <input v-model="queryParams.keyword"/>
+      <input type="button" value="搜索" @click="search"/>
     </template>
     <!---->
     <template slot="expand" slot-scope="{scope}">
@@ -53,7 +54,7 @@ export default {
         { type: 'expand', slot: 'expand' },
         { type: 'index', fixed: true },
         { prop: 'id', label: 'id',sortable: true },
-        { prop: 'name', label: '姓名', slot: 'name-phone' },
+        { prop: 'name', label: '姓名', slot: 'name-phone',showOverflowTooltip: true },
         { prop: 'loginName', label: '登录名' },
         { prop: 'nickName', label: '昵称' },
         { prop: 'avatar', label: '头像', width: 300, slot: 'avatar' },
@@ -115,9 +116,9 @@ export default {
       this.getTableData()
     },
     getQueryParams () {
-      console.log('重写getQueryParams')
       let queryParams = { ...this.queryParams, ...this.pageObj }
       delete queryParams['total']
+      console.log("搜索条件:%o",queryParams)
       return queryParams
     },
     spanMethod ({ row, column, rowIndex, columnIndex }) {
@@ -142,21 +143,22 @@ export default {
       console.log('删除对象:%o', obj)
     },
     getTableData () {
-      let page = this.pageObj.page
-      let limit = this.pageObj.limit
+      let queryParams = this.getQueryParams();
+      let page = queryParams.page
+      let limit = queryParams.limit
       this.pageObj.total = 100
       this.tableData = []
       for (let i = 0; i < limit; i++) {
         this.tableData.push({ id: page * limit + i, name: '测试' + page * limit + i })
       }
     },
-    handleSelectionChange (val) {
+    selectionChange (val) {
       console.log(val)
     },
-    handleRowClick (row, event, column) {
+    rowClick (row, event, column) {
       console.log('点击行对象:%o', row)
     },
-    handleCellClick (row, column, cell, event) {
+    cellClick (row, column, cell, event) {
       console.log('点击单元格对象:%o', cell)
     }
   }
