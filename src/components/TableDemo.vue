@@ -1,7 +1,17 @@
 <!--suppress ALL -->
 <template>
   <!--table模板-->
-  <table-layout :show-summary="true" height="500" :summary-method="summaryMethod" @sizeChange="handleSizeChange" @currentChange="handleCurrentChange" @handleRowClick="handleRowClick" @handleCellClick="handleCellClick" :spanMethod="spanMethod"  :pageObj="pageObj" :headers="headers" @selectionChange="handleSelectionChange" :tableData="tableData">
+  <table-layout :show-summary="true" height="500"
+                :summary-method="summaryMethod"
+                :spanMethod="spanMethod"
+                :pageObj="pageObj"
+                :headers="headers"
+                :data="tableData"
+                @sizeChange="handleSizeChange"
+                @currentChange="handleCurrentChange"
+                @handleRowClick="handleRowClick"
+                @handleCellClick="handleCellClick"
+                @selectionChange="handleSelectionChange">
     <template slot="top-left">
       左边插槽
     </template>
@@ -10,11 +20,7 @@
     </template>
     <!---->
     <template slot="expand" slot-scope="{scope}">
-      <el-form label-position="left" inline class="demo-table-expand">
-        <el-form-item label="名称">
           {{scope.row.name}}
-        </el-form-item>
-      </el-form>
     </template>
     <!--姓名电话-->
     <template slot="name-phone" slot-scope="{scope}">
@@ -27,19 +33,19 @@
     </template>
     <!--操作-->
     <template slot="operator" slot-scope="{scope}">
-      <el-button @click="handleView(scope.row)">查看</el-button>
-      <el-button @click="handleDel(scope.row)">删除</el-button>
+      <el-button @click.stop="handleView(scope.row)">查看</el-button>
+      <el-button @click.stop="handleDel(scope.row)">删除</el-button>
     </template>
   </table-layout>
 </template>
 
 <script>
-import { TABLE_MIXINS } from './../mixins/table_mixins'
+import { Mixins } from '../mixins/mixins'
 import TableLayout from './table/TableLayout'
 export default {
   name: 'table-demo',
   components: { TableLayout },
-  mixins: [ TABLE_MIXINS ],
+  mixins: [ Mixins ],
   data () {
     return {
       headers: [
