@@ -27,8 +27,8 @@
       <div class="pagination" style="text-align: right;margin-top: 10px">
         <slot name="pagination">
           <el-pagination
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
+            @size-change="sizeChange"
+            @current-change="currentChange"
             layout="sizes, prev, pager, next, jumper, ->, total, slot"
             :total="pageObj.total" :page-size="pageObj.limit"
             :current-page="pageObj.page">
@@ -49,11 +49,11 @@ export default {
   components: { TableTemplate },
   methods: {
     // 分页长度改变
-    handleSizeChange (val) {
+    sizeChange (val) {
       this.$emit('sizeChange', val)
     },
     // 分页页码改变
-    handleCurrentChange (val) {
+    currentChange (val) {
       this.$emit('currentChange', val)
     }
   }
