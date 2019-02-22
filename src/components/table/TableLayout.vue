@@ -13,7 +13,13 @@
       </div>
       <!--table-->
       <div class="table">
-        <table-template  v-bind="$attrs"  @handleRowClick="handleRowClick" @handleCellClick="handleCellClick" :spanMethod="spanMethod" :headers="headers" ref="table" :tableData="tableData" @selectionChange="handleSelectionChange">
+        <table-template
+          v-bind="$attrs"
+          v-on="$listeners"
+          :spanMethod="spanMethod"
+          :headers="headers"
+          :data="data"
+          ref="table">
           <template  v-for="i in headers"  :slot="i.slot" slot-scope="{scope}">
               <slot v-if="i.slot" :name="i.slot" :scope="scope">{{i.slot}}</slot>
             </template>
@@ -22,7 +28,12 @@
       <!--分页-->
       <div class="pagination" style="text-align: right;margin-top: 10px">
         <slot name="pagination">
-          <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" layout="sizes, prev, pager, next, jumper, ->, total, slot" :total="pageObj.total" :page-size="pageObj.limit" :current-page="pageObj.page">
+          <el-pagination
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            layout="sizes, prev, pager, next, jumper, ->, total, slot"
+            :total="pageObj.total" :page-size="pageObj.limit"
+            :current-page="pageObj.page">
           </el-pagination>
         </slot>
       </div>
@@ -36,7 +47,7 @@ export default {
   props: {
     spanMethod: { type: Function },
     headers: { type: Array, required: true },
-    tableData: { type: Array, required: true },
+    data: { type: Array, required: true },
     pageObj: { type: Object, required: true }
   },
   components: { TableTemplate },
@@ -48,15 +59,6 @@ export default {
     // 分页页码改变
     handleCurrentChange (val) {
       this.$emit('currentChange', val)
-    },
-    handleSelectionChange (val) {
-      this.$emit('selectionChange', val)
-    },
-    handleRowClick (row, event, column) {
-      this.$emit('handleRowClick', row, event, column)
-    },
-    handleCellClick (row, column, cell, event) {
-      this.$emit('handleCellClick', row, column, cell, event)
     }
   }
 }
