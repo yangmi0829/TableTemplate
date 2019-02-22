@@ -20,12 +20,12 @@ export const Mixins = {
       this.init()
     },
     // 分页长度改变
-    handleSizeChange (val) {
+    sizeChange (val) {
       this.pageObj.limit = val
       this.init()
     },
     // 分页页码改变
-    handleCurrentChange (val) {
+    currentChange (val) {
       this.pageObj.page = val
       this.init()
     },
