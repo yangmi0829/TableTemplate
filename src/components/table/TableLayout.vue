@@ -16,9 +16,7 @@
         <table-template
           v-bind="$attrs"
           v-on="$listeners"
-          :spanMethod="spanMethod"
           :headers="headers"
-          :data="data"
           ref="table">
           <template  v-for="i in headers"  :slot="i.slot" slot-scope="{scope}">
               <slot v-if="i.slot" :name="i.slot" :scope="scope">{{i.slot}}</slot>
@@ -45,9 +43,7 @@ import TableTemplate from './TableTemplate.vue'
 export default {
   name: 'table-layout',
   props: {
-    spanMethod: { type: Function },
     headers: { type: Array, required: true },
-    data: { type: Array, required: true },
     pageObj: { type: Object, required: true }
   },
   components: { TableTemplate },
