@@ -14,7 +14,7 @@
       v-else
      :prop="col.prop"
      :sortable="col.sortable"
-     :show-overflow-tooltip="col.tips"
+     :show-overflow-tooltip="col.showOverflowTooltip"
      :align="col.align || 'center'"
      :label="col.label"
      :width="col.width"
