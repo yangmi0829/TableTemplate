@@ -3,7 +3,7 @@
   <!--table模板-->
   <table-layout :show-summary="true" height="500"
                 :summary-method="summaryMethod"
-                :spanMethod="spanMethod"
+                :span-method="spanMethod"
                 :pageObj="pageObj"
                 :headers="headers"
                 :data="tableData"
