@@ -1,10 +1,8 @@
 <template>
   <el-table
-    :span-method="spanMethod"
     @row-click="handleRowClick"
     @cell-click="handleCellClick"
     @selection-change="handleSelectionChange"
-    :data="data"
     v-bind="$attrs"
     border
     stripe
@@ -24,9 +22,7 @@ import TableColumn from './TableColumn.vue'
 export default {
   name: 'table-template',
   props: {
-    spanMethod: { type: Function },
-    headers: { type: Array, required: true },
-    data: { type: Array, required: true }
+    headers: { type: Array, required: true }
   },
   components: { TableColumn },
   methods: {
