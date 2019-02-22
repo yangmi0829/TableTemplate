@@ -19,7 +19,7 @@ for (const condition in TableComponent) {
 + 3...
 ### mixins.js
 ```
-export const TABLE_MIXINS = {
+export const Mixins = {
   data() {
     return {
       pageObj: { page: 1, limit: 10, total: 0 },
@@ -97,10 +97,10 @@ export const TABLE_MIXINS = {
 </template>
 
 <script>
-import { TABLE_MIXINS } from './../../mixins/table_mixins'
+import { Mixins } from './../../mixins/table_mixins'
 export default {
   name: 'Table2',
-  mixins: [TABLE_MIXINS],
+  mixins: [Mixins],
   data() {
     return {
       headers: [
