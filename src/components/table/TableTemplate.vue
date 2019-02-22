@@ -1,8 +1,8 @@
 <template>
   <el-table
-    @row-click="handleRowClick"
-    @cell-click="handleCellClick"
-    @selection-change="handleSelectionChange"
+    @row-click="rowClick"
+    @cell-click="cellClick"
+    @selection-change="selectionChange"
     v-bind="$attrs"
     border
     stripe
@@ -26,14 +26,14 @@ export default {
   },
   components: { TableColumn },
   methods: {
-    handleSelectionChange (val) {
+    selectionChange (val) {
       this.$emit('selectionChange', val)
     },
-    handleRowClick (row, event, column) {
-      this.$emit('handleRowClick', row, event, column)
+    rowClick (row, event, column) {
+      this.$emit('rowClick', row, event, column)
     },
-    handleCellClick (row, column, cell, event) {
-      this.$emit('handleCellClick', row, column, cell, event)
+    cellClick (row, column, cell, event) {
+      this.$emit('cellClick', row, column, cell, event)
     }
   }
 }
