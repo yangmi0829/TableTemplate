@@ -9,9 +9,13 @@ npm install element-ui-table-template
 ```
 /*main.js中引入*/
 import TableComponent from 'element-ui-table-template'
+/*全局注册*/
 for (const condition in TableComponent) {
   Vue.component(TableComponent[condition].name, TableComponent[condition])
 }
+/*或者*/
+/*Vue.component('TableLayout', TableComponent.TableLayout)
+Vue.component('TableTemplate', TableComponent.TableTemplate)*/
 ```
 ### use in page
 + 1引入mixins.js
